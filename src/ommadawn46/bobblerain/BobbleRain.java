@@ -95,7 +95,7 @@ public class BobbleRain extends PApplet {
 
 		List<Bobble> outsideBobbles = new ArrayList<Bobble>();
 		for(Bobble bobble: bobbles){
-			if(bobble.isOnField()){
+			if(isOnField(bobble)){
 				bobble.update();
 			}else{
 				outsideBobbles.add(bobble);
@@ -104,6 +104,15 @@ public class BobbleRain extends PApplet {
 		for(Bobble outsideBobble: outsideBobbles){
 			bobbles.remove(outsideBobble);
 		}
+	}
+	
+	// バブルが視点の近くに存在するか
+	private boolean isOnField(Bobble bobble){
+		if(Math.sqrt(Math.pow(bobble.getX()+basePos.x-width/2,2) + Math.pow(bobble.getY()+basePos.y-height/2,2)) >
+				Math.sqrt(width*width + height*height)){
+			return false;
+		}
+		return true;
 	}
 	
 	// 重力の方向を描画

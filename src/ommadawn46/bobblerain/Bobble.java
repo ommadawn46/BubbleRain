@@ -22,17 +22,6 @@ public class Bobble {
 		this.speed = speed;
 	}
 
-	// ユーザの視点の近くに存在するか
-	public boolean isOnField(){
-		int width = applet.getSize().width, height = applet.getSize().height;
-		PVector basePos = applet.getBasePosition();
-		if(Math.sqrt(Math.pow(x+basePos.x-width/2,2) + Math.pow(y+basePos.y-height/2,2)) >
-				Math.sqrt(width*width + height*height)){
-			return false;
-		}
-		return true;
-	}
-
 	// バブルの描画
 	public void update(){
 		PVector gravity = applet.getGravity();
@@ -43,4 +32,7 @@ public class Bobble {
 		applet.fill(r, g, b, 150);
 		applet.ellipse(x, y, size, size);
 	}
+	
+	public float getX(){return x;}
+	public float getY(){return y;}
 }
